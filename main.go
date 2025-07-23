@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"pokedex/internal/pokeapi"
 	"strings"
 )
 
@@ -15,6 +16,7 @@ func main() {
 		text := inputScanner.Text()
 		wordsSlice := cleanInput(text)
 		command := wordsSlice[0]
+		args := wordsSlice[1:]
 
 		value, exists := supportedCommands[command]
 		if !exists {
@@ -22,7 +24,7 @@ func main() {
 			continue
 		}
 
-		err := value.callback()
+		err := value.Callback(args, &pokeapi.LocationAreaEndpoint)
 		if err != nil {
 			fmt.Println(err)
 		}
