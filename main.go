@@ -10,6 +10,8 @@ import (
 
 func main() {
 	inputScanner := bufio.NewScanner(os.Stdin)
+	pokedex := make(map[string]pokeapi.Pokemon)
+
 	for {
 		fmt.Print("Pokedex > ")
 		inputScanner.Scan()
@@ -24,7 +26,7 @@ func main() {
 			continue
 		}
 
-		err := value.Callback(args, &pokeapi.LocationAreaEndpoint)
+		err := value.Callback(args, &pokedex, &pokeapi.LocationAreaPage)
 		if err != nil {
 			fmt.Println(err)
 		}

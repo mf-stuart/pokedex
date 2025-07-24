@@ -7,7 +7,7 @@ import (
 
 const DEFAULT_INTERVAL = time.Duration(10 * time.Second)
 
-var LocationCache = NewCache(DEFAULT_INTERVAL)
+var ClientCache = NewCache(DEFAULT_INTERVAL)
 
 type cacheEntry struct {
 	createdAt time.Time
